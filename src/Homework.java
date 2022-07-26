@@ -70,7 +70,19 @@ public class Homework extends SuperKarel {
         karelPosition.setY(karelPosition.getY() - 1);
     }
 
-    public void run() {
+    private void getGridDimensions() {
+        while (frontIsClear()) {
+            moveUp();
+        }
+        turnFaceDirectionTo(0);
+        while (frontIsClear()) {
+            moveRight();
+        }
+        gridWidth = karelPosition.getX();
+        gridHeight = karelPosition.getY();
+    }
 
+    public void run() {
+        getGridDimensions();
     }
 }
