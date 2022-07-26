@@ -1,3 +1,5 @@
+import stanford.karel.Karel;
+import stanford.karel.KarelProgram;
 import stanford.karel.SuperKarel;
 
 class Point {
@@ -39,7 +41,7 @@ public class Homework extends SuperKarel {
 
     private void turnFaceDirectionTo(int direction) {
         while (faceDirection != direction) {
-            turnRight();
+            turnLeft();
             faceDirection = (faceDirection + 1) % 4;
         }
     }
@@ -69,6 +71,6 @@ public class Homework extends SuperKarel {
     }
 
     public void run() {
-        move();
+
     }
 }
