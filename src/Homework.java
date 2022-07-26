@@ -47,21 +47,25 @@ public class Homework extends SuperKarel {
     private void moveRight() {
         turnFaceDirectionTo(0);
         move();
+        karelPosition.setX(karelPosition.getX() + 1);
     }
 
     private void moveLeft() {
         turnFaceDirectionTo(2);
         move();
+        karelPosition.setX(karelPosition.getX() - 1);
     }
 
     private void moveUp() {
         turnFaceDirectionTo(1);
         move();
+        karelPosition.setY(karelPosition.getY() + 1);
     }
 
     private void moveDown() {
         turnFaceDirectionTo(3);
         move();
+        karelPosition.setY(karelPosition.getY() - 1);
     }
 
     public void run() {
