@@ -37,6 +37,13 @@ public class Homework extends SuperKarel {
         karelPosition = new Point(1, 1);
     }
 
+    private void turnFaceDirectionTo(int direction) {
+        while (faceDirection != direction) {
+            turnRight();
+            faceDirection = (faceDirection + 1) % 4;
+        }
+    }
+
     public void run() {
         move();
     }
