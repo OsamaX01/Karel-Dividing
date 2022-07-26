@@ -27,6 +27,16 @@ class Point {
 }
 
 public class Homework extends SuperKarel {
+    private int faceDirection;
+    private int gridHeight;
+    private int gridWidth;
+    private Point karelPosition;
+
+    public Homework() {
+        faceDirection = 0;
+        karelPosition = new Point(1, 1);
+    }
+
     public void run() {
         move();
     }
