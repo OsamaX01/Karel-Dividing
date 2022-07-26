@@ -44,6 +44,26 @@ public class Homework extends SuperKarel {
         }
     }
 
+    private void moveRight() {
+        turnFaceDirectionTo(0);
+        move();
+    }
+
+    private void moveLeft() {
+        turnFaceDirectionTo(2);
+        move();
+    }
+
+    private void moveUp() {
+        turnFaceDirectionTo(1);
+        move();
+    }
+
+    private void moveDown() {
+        turnFaceDirectionTo(3);
+        move();
+    }
+
     public void run() {
         move();
     }
