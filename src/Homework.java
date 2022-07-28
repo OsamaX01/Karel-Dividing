@@ -147,12 +147,10 @@ public class Homework extends SuperKarel {
     }
 
     private void divideHeight() {
+        moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
         if (gridHeight % 2 != 0) {
-            moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
             moveTo(new Point(gridWidth / 2 + 1, 1), true);
-        }
-        else {
-            moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
+        } else {
             zigzagMove(Direction.DOWN, Direction.LEFT);
         }
     }
