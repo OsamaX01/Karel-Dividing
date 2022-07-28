@@ -86,6 +86,24 @@ public class Homework extends SuperKarel {
         gridHeight = karelPosition.getY();
     }
 
+    private void moveTo(Point destination) {
+        while (karelPosition.getX() != destination.getX()) {
+            if (destination.getX() < karelPosition.getX()) {
+                moveLeft();
+            } else {
+                moveRight();
+            }
+        }
+
+        while (karelPosition.getY() != destination.getY()) {
+            if (destination.getY() < karelPosition.getY()) {
+                moveDown();
+            } else {
+                moveUp();
+            }
+        }
+    }
+
     public void run() {
         getGridDimensions();
     }
