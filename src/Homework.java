@@ -1,3 +1,4 @@
+import javafx.scene.shape.MoveTo;
 import stanford.karel.Karel;
 import stanford.karel.KarelProgram;
 import stanford.karel.SuperKarel;
@@ -28,6 +29,23 @@ class Point {
     public void setY(int y) {
         this.y = y;
     }
+
+    public void moveOneStepTo(Direction direction) {
+        switch (direction) {
+            case RIGHT:
+                setX(getX() + 1);
+                break;
+            case LEFT:
+                setX(getX() - 1);
+                break;
+            case UP:
+                setY(getY() + 1);
+                break;
+            case DOWN:
+                setY(getY() - 1);
+                break;
+        }
+    }
 }
 
 public class Homework extends SuperKarel {
@@ -54,41 +72,10 @@ public class Homework extends SuperKarel {
         }
     }
 
-    private void moveRight() {
-        turnFaceDirectionTo(Direction.RIGHT);
+    private void moveTo(Direction direction) {
+        turnFaceDirectionTo(direction);
         move();
-        karelPosition.setX(karelPosition.getX() + 1);
-    }
-
-    private void moveLeft() {
-        turnFaceDirectionTo(Direction.LEFT);
-        move();
-        karelPosition.setX(karelPosition.getX() - 1);
-    }
-
-    private void moveUp() {
-        turnFaceDirectionTo(Direction.UP);
-        move();
-        karelPosition.setY(karelPosition.getY() + 1);
-    }
-
-    private void moveDown() {
-        turnFaceDirectionTo(Direction.DOWN);
-        move();
-        karelPosition.setY(karelPosition.getY() - 1);
-    }
-
-    private void getGridDimensions() {
-        turnFaceDirectionTo(Direction.UP);
-        while (frontIsClear()) {
-            moveUp();
-        }
-        turnFaceDirectionTo(Direction.RIGHT);
-        while (frontIsClear()) {
-            moveRight();
-        }
-        gridWidth = karelPosition.getX();
-        gridHeight = karelPosition.getY();
+        karelPosition.moveOneStepTo(direction);
     }
 
     private void moveTo(Point destination, boolean putBeepersOnTheWay) {
@@ -97,9 +84,9 @@ public class Homework extends SuperKarel {
                 putBeeper();
             }
             if (destination.getX() < karelPosition.getX()) {
-                moveLeft();
+                moveTo(Direction.LEFT);
             } else {
-                moveRight();
+                moveTo(Direction.RIGHT);
             }
         }
         if (putBeepersOnTheWay && !beepersPresent()) {
@@ -111,14 +98,27 @@ public class Homework extends SuperKarel {
                 putBeeper();
             }
             if (destination.getY() < karelPosition.getY()) {
-                moveDown();
+                moveTo(Direction.DOWN);
             } else {
-                moveUp();
+                moveTo(Direction.UP);
             }
         }
         if (putBeepersOnTheWay && !beepersPresent()) {
             putBeeper();
         }
+    }
+
+    private void getGridDimensions() {
+        turnFaceDirectionTo(Direction.UP);
+        while (frontIsClear()) {
+            moveTo(Direction.UP);
+        }
+        turnFaceDirectionTo(Direction.RIGHT);
+        while (frontIsClear()) {
+            moveTo(Direction.RIGHT);
+        }
+        gridWidth = karelPosition.getX();
+        gridHeight = karelPosition.getY();
     }
 
     private void verticalZigzagMove(Direction initialDirection) {
@@ -127,19 +127,19 @@ public class Homework extends SuperKarel {
         while (frontIsClear()) {
             putBeeper();
             if (goRight) {
-                moveRight();
+                moveTo(Direction.RIGHT);
             } else {
-                moveLeft();
+                moveTo(Direction.LEFT);
             }
             putBeeper();
-            moveDown();
+            moveTo(Direction.DOWN);
             goRight = !goRight;
         }
         putBeeper();
         if (goRight) {
-            moveRight();
+            moveTo(Direction.RIGHT);
         } else {
-            moveLeft();
+            moveTo(Direction.LEFT);
         }
         putBeeper();
     }
