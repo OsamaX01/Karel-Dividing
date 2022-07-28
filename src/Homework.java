@@ -37,6 +37,7 @@ public class Homework extends SuperKarel {
     private Point karelPosition;
 
     private void initiate() {
+        setBeepersInBag(10000);
         faceDirection = Direction.RIGHT;
         karelPosition = new Point(1, 1);
     }
