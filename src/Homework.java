@@ -2,6 +2,8 @@ import stanford.karel.Karel;
 import stanford.karel.KarelProgram;
 import stanford.karel.SuperKarel;
 
+enum Direction {RIGHT, UP, LEFT, DOWN};
+
 class Point {
     private int x;
     private int y;
@@ -29,53 +31,54 @@ class Point {
 }
 
 public class Homework extends SuperKarel {
-    private int faceDirection;
+    private Direction faceDirection;
     private int gridHeight;
     private int gridWidth;
     private Point karelPosition;
 
     public Homework() {
-        faceDirection = 0;
+        faceDirection = Direction.RIGHT;
         karelPosition = new Point(1, 1);
     }
 
-    private void turnFaceDirectionTo(int direction) {
+    private void turnFaceDirectionTo(Direction direction) {
         while (faceDirection != direction) {
             turnLeft();
-            faceDirection = (faceDirection + 1) % 4;
+            int nextDirection = (faceDirection.ordinal() + 1) % 4;
+            faceDirection = Direction.values()[nextDirection];
         }
     }
 
     private void moveRight() {
-        turnFaceDirectionTo(0);
+        turnFaceDirectionTo(Direction.RIGHT);
         move();
         karelPosition.setX(karelPosition.getX() + 1);
     }
 
     private void moveLeft() {
-        turnFaceDirectionTo(2);
+        turnFaceDirectionTo(Direction.LEFT);
         move();
         karelPosition.setX(karelPosition.getX() - 1);
     }
 
     private void moveUp() {
-        turnFaceDirectionTo(1);
+        turnFaceDirectionTo(Direction.UP);
         move();
         karelPosition.setY(karelPosition.getY() + 1);
     }
 
     private void moveDown() {
-        turnFaceDirectionTo(3);
+        turnFaceDirectionTo(Direction.DOWN);
         move();
         karelPosition.setY(karelPosition.getY() - 1);
     }
 
     private void getGridDimensions() {
-        turnFaceDirectionTo(1);
+        turnFaceDirectionTo(Direction.UP);
         while (frontIsClear()) {
             moveUp();
         }
-        turnFaceDirectionTo(0);
+        turnFaceDirectionTo(Direction.RIGHT);
         while (frontIsClear()) {
             moveRight();
         }
