@@ -147,9 +147,9 @@ public class Homework extends SuperKarel {
         putBeeper();
     }
 
-    private void divideHeight() {
+    private void divideVertically() {
         moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
-        if (gridHeight % 2 != 0) {
+        if (gridWidth % 2 != 0) {
             moveTo(new Point(gridWidth / 2 + 1, 1), true);
         } else {
             zigzagMove(Direction.DOWN, Direction.LEFT);
@@ -159,6 +159,6 @@ public class Homework extends SuperKarel {
     public void run() {
         initiate();
         getGridDimensions();
-        divideHeight();
+        divideVertically();
     }
 }
