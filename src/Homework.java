@@ -62,6 +62,12 @@ public class Homework extends SuperKarel {
         initiate();
     }
 
+    public void putBeeper() {
+        if (!beepersPresent()) {
+            super.putBeeper();
+        }
+    }
+    
     private void turnFaceDirectionTo(Direction direction) {
         while (faceDirection != direction) {
             turnLeft();
