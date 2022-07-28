@@ -71,6 +71,7 @@ public class Homework extends SuperKarel {
     }
 
     private void getGridDimensions() {
+        turnFaceDirectionTo(1);
         while (frontIsClear()) {
             moveUp();
         }
