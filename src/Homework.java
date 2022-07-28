@@ -67,7 +67,7 @@ public class Homework extends SuperKarel {
             super.putBeeper();
         }
     }
-    
+
     private void turnFaceDirectionTo(Direction direction) {
         while (faceDirection != direction) {
             turnLeft();
@@ -84,7 +84,7 @@ public class Homework extends SuperKarel {
 
     private void moveTo(Point destination, boolean putBeepersOnTheWay) {
         while (karelPosition.getX() != destination.getX()) {
-            if (putBeepersOnTheWay && !beepersPresent()) {
+            if (putBeepersOnTheWay) {
                 putBeeper();
             }
             if (destination.getX() < karelPosition.getX()) {
@@ -93,12 +93,12 @@ public class Homework extends SuperKarel {
                 moveTo(Direction.RIGHT);
             }
         }
-        if (putBeepersOnTheWay && !beepersPresent()) {
+        if (putBeepersOnTheWay) {
             putBeeper();
         }
 
         while (karelPosition.getY() != destination.getY()) {
-            if (putBeepersOnTheWay && !beepersPresent()) {
+            if (putBeepersOnTheWay) {
                 putBeeper();
             }
             if (destination.getY() < karelPosition.getY()) {
@@ -107,7 +107,7 @@ public class Homework extends SuperKarel {
                 moveTo(Direction.UP);
             }
         }
-        if (putBeepersOnTheWay && !beepersPresent()) {
+        if (putBeepersOnTheWay) {
             putBeeper();
         }
     }
