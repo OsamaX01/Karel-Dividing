@@ -90,21 +90,33 @@ public class Homework extends SuperKarel {
         gridHeight = karelPosition.getY();
     }
 
-    private void moveTo(Point destination) {
+    private void moveTo(Point destination, boolean putBeepersOnTheWay) {
         while (karelPosition.getX() != destination.getX()) {
+            if (putBeepersOnTheWay && !beepersPresent()) {
+                putBeeper();
+            }
             if (destination.getX() < karelPosition.getX()) {
                 moveLeft();
             } else {
                 moveRight();
             }
         }
+        if (putBeepersOnTheWay && !beepersPresent()) {
+            putBeeper();
+        }
 
         while (karelPosition.getY() != destination.getY()) {
+            if (putBeepersOnTheWay && !beepersPresent()) {
+                putBeeper();
+            }
             if (destination.getY() < karelPosition.getY()) {
                 moveDown();
             } else {
                 moveUp();
             }
+        }
+        if (putBeepersOnTheWay && !beepersPresent()) {
+            putBeeper();
         }
     }
 
