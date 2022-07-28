@@ -36,9 +36,13 @@ public class Homework extends SuperKarel {
     private int gridWidth;
     private Point karelPosition;
 
-    public Homework() {
+    private void initiate() {
         faceDirection = Direction.RIGHT;
         karelPosition = new Point(1, 1);
+    }
+
+    public Homework() {
+        initiate();
     }
 
     private void turnFaceDirectionTo(Direction direction) {
@@ -105,6 +109,7 @@ public class Homework extends SuperKarel {
     }
 
     public void run() {
+        initiate();
         getGridDimensions();
     }
 }
