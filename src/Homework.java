@@ -121,9 +121,9 @@ public class Homework extends SuperKarel {
         }
     }
 
-    private void verticalZigzagMove(Direction direction) {
+    private void verticalZigzagMove(Direction initialDirection) {
         turnFaceDirectionTo(Direction.DOWN);
-        boolean goRight = (direction == Direction.RIGHT);
+        boolean goRight = (initialDirection == Direction.RIGHT);
         while (frontIsClear()) {
             putBeeper();
             if (goRight) {
