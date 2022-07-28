@@ -121,25 +121,27 @@ public class Homework extends SuperKarel {
         gridHeight = karelPosition.getY();
     }
 
-    private void verticalZigzagMove(Direction initialDirection) {
-        turnFaceDirectionTo(Direction.DOWN);
-        boolean goRight = (initialDirection == Direction.RIGHT);
+    private void zigzagMove(Direction mainDirection, Direction swappingDirection) {
+        turnFaceDirectionTo(mainDirection);
+        boolean turn = true;
         while (frontIsClear()) {
             putBeeper();
-            if (goRight) {
-                moveTo(Direction.RIGHT);
+            if (turn) {
+                moveTo(swappingDirection);
             } else {
-                moveTo(Direction.LEFT);
+                Direction oppositeDirection = Direction.values()[(swappingDirection.ordinal() + 2) % 4];
+                moveTo(oppositeDirection);
             }
             putBeeper();
-            moveTo(Direction.DOWN);
-            goRight = !goRight;
+            moveTo(mainDirection);
+            turn = !turn;
         }
         putBeeper();
-        if (goRight) {
-            moveTo(Direction.RIGHT);
+        if (turn) {
+            moveTo(swappingDirection);
         } else {
-            moveTo(Direction.LEFT);
+            Direction oppositeDirection = Direction.values()[(swappingDirection.ordinal() + 2) % 4];
+            moveTo(oppositeDirection);
         }
         putBeeper();
     }
@@ -150,8 +152,8 @@ public class Homework extends SuperKarel {
             moveTo(new Point(gridWidth / 2 + 1, 1), true);
         }
         else {
-            moveTo(new Point(gridWidth / 2, gridHeight), false);
-            verticalZigzagMove(Direction.RIGHT);
+            moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
+            zigzagMove(Direction.DOWN, Direction.LEFT);
         }
     }
 
