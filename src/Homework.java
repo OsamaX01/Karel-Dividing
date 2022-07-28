@@ -1,6 +1,3 @@
-import javafx.scene.shape.MoveTo;
-import stanford.karel.Karel;
-import stanford.karel.KarelProgram;
 import stanford.karel.SuperKarel;
 
 enum Direction {RIGHT, UP, LEFT, DOWN};
@@ -156,9 +153,20 @@ public class Homework extends SuperKarel {
         }
     }
 
+    private void divideHorizontally() {
+        if (gridHeight % 2 != 0) {
+            moveTo(new Point(gridWidth, gridHeight / 2 + 1), false);
+            moveTo(new Point(1, gridHeight / 2 + 1), true);
+        } else {
+            moveTo(new Point(gridWidth, gridHeight / 2), false);
+            zigzagMove(Direction.LEFT, Direction.UP);
+        }
+    }
+
     public void run() {
         initiate();
         getGridDimensions();
         divideVertically();
+        divideHorizontally();
     }
 }
