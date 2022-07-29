@@ -177,10 +177,19 @@ public class Homework extends SuperKarel {
         }
     }
 
+    private void divideSpecial2x2() {
+        if (gridHeight == 2 && gridWidth == 2) {
+            putBeeper();
+            moveTo(new Point(1, 1), false);
+            putBeeper();
+        }
+    }
+
     public void run() {
         initiate();
         getGridDimensions();
         divideVertically();
         divideHorizontally();
+        divideSpecial2x2();
     }
 }
