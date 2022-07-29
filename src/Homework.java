@@ -50,12 +50,14 @@ public class Homework extends SuperKarel {
     private int gridHeight;
     private int gridWidth;
     private Point karelPosition;
+    private int movesCounter;
 
     private void initiate() {
         setBeepersInBag(10000);
         karelPosition = new Point(1, 1);
         moveTo(karelPosition, false);
         faceDirection = Direction.RIGHT;
+        movesCounter = 0;
     }
 
     public Homework() {
@@ -66,6 +68,11 @@ public class Homework extends SuperKarel {
         if (!beepersPresent()) {
             super.putBeeper();
         }
+    }
+
+    private void incrementAndPrintMoves() {
+        movesCounter++;
+        System.out.println(movesCounter);
     }
 
     private void turnFaceDirectionTo(Direction direction) {
@@ -80,6 +87,7 @@ public class Homework extends SuperKarel {
         turnFaceDirectionTo(direction);
         move();
         karelPosition.moveOneStepTo(direction);
+        incrementAndPrintMoves();
     }
 
     private void moveTo(Point destination, boolean putBeepersOnTheWay) {
