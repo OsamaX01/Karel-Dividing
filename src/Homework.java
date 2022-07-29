@@ -151,6 +151,10 @@ public class Homework extends SuperKarel {
     }
 
     private void divideVertically() {
+        if (gridWidth < 3) {
+            return;
+        }
+
         moveTo(new Point(gridWidth / 2 + 1, gridHeight), false);
         if (gridWidth % 2 != 0) {
             moveTo(new Point(gridWidth / 2 + 1, 1), true);
@@ -160,6 +164,10 @@ public class Homework extends SuperKarel {
     }
 
     private void divideHorizontally() {
+        if (gridHeight < 3) {
+            return;
+        }
+
         if (gridHeight % 2 != 0) {
             moveTo(new Point(gridWidth, gridHeight / 2 + 1), false);
             moveTo(new Point(1, gridHeight / 2 + 1), true);
